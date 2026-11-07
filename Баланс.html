@@ -1,110 +1,85 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ru">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="Баланс">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
 <title>Баланс</title>
 <style>
-:root{--bg:#f2f5f4;--card:#fff;--tx:#0e1a18;--mu:#788985;--ac:#1f8a7d;--g:#1fa971;--r:#e5484d;--ln:rgba(0,0,0,.07);--in:#eef2f1;color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
-@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0a100f;--card:#141c1b;--tx:#eef4f2;--mu:#8a9a96;--ac:#37c2a8;--g:#4ade80;--r:#ff6b6b;--ln:rgba(255,255,255,.07);--in:#1c2625;color-scheme:dark}}
-:root[data-theme="dark"]{--bg:#0a100f;--card:#141c1b;--tx:#eef4f2;--mu:#8a9a96;--ac:#37c2a8;--g:#4ade80;--r:#ff6b6b;--ln:rgba(255,255,255,.07);--in:#1c2625;color-scheme:dark}
-html{scroll-padding-top:env(safe-area-inset-top,0px)}
-*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
-body{background:var(--bg);color:var(--tx);font:16px/1.35 -apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",Roboto,sans-serif;padding:8px 16px 120px;max-width:520px;margin:0 auto}
-h2{font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--mu);margin:22px 4px 10px}
-small{color:var(--mu);font-size:13px}
-.hero{background:radial-gradient(120% 90% at 100% 0,rgba(255,255,255,.22),transparent 55%),linear-gradient(135deg,#23a08f,#0d5560);color:#fff;border-radius:28px;padding:24px 22px;box-shadow:0 14px 34px -12px rgba(15,93,102,.55)}
-.hero small{color:rgba(255,255,255,.75)}
-.hero h1{font-size:38px;font-weight:700;letter-spacing:-.02em;margin:4px 0 18px}
-.hs{display:flex;gap:10px}.hs>div{flex:1;background:rgba(255,255,255,.14);border-radius:16px;padding:10px 12px;font-size:12px;color:rgba(255,255,255,.8)}
-.hs b{display:block;font-size:16px;color:#fff;margin-top:2px}
-.scroll{display:flex;gap:12px;overflow-x:auto;margin:0 -16px;padding:2px 16px 8px;scrollbar-width:none}
-.ac{flex:0 0 150px;background:var(--card);border-radius:20px;padding:14px;display:flex;flex-direction:column;gap:2px;border:1px solid var(--ln);position:relative}
+:root{--bg:#f5f5f7;--card:#fff;--tx:#1d1d1f;--mu:#86868b;--ac:#0a84ff;--g:#34c759;--r:#ff3b30;--ln:#e5e5ea;--sb:#fff}
+@media(prefers-color-scheme:dark){:root{--bg:#000;--card:#1c1c1e;--tx:#f5f5f7;--mu:#8e8e93;--ln:#38383a;--sb:#1c1c1e}}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{margin:0;background:var(--bg);color:var(--tx);font:16px/1.4 -apple-system,BlinkMacSystemFont,system-ui,sans-serif;padding-bottom:90px}
+#v{max-width:480px;margin:0 auto;padding:16px}
+h2{font-size:13px;font-weight:600;color:var(--mu);text-transform:uppercase;letter-spacing:.5px;margin:20px 0 8px}
+.card{background:var(--card);border-radius:16px;padding:16px;margin-bottom:12px}
+.btn{display:block;width:100%;background:var(--ac);color:#fff;border:0;border-radius:12px;padding:14px;font-size:17px;font-weight:600;margin-top:8px}
+.btn.s{background:var(--ln);color:var(--tx)}
+.btn.d{background:var(--r)}
+.f{width:100%;padding:12px;border:1px solid var(--ln);border-radius:10px;font-size:16px;background:var(--bg);color:var(--tx);margin:4px 0}
+label{font-size:13px;color:var(--mu);display:block;margin-top:10px}
+.ch{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+.ch button{background:var(--bg);border:1px solid var(--ln);border-radius:20px;padding:8px 14px;font-size:14px;color:var(--tx)}
+.ch button.on{background:var(--ac);color:#fff;border-color:var(--ac)}
+.sg{display:flex;background:var(--ln);border-radius:10px;padding:2px;margin:8px 0}
+.sg button{flex:1;border:0;background:0;padding:8px;border-radius:8px;font-size:15px;color:var(--tx)}
+.sg button.on{background:var(--card);font-weight:600}
+.big{font-size:32px;font-weight:700;text-align:center;border:0;background:0;width:100%;color:var(--tx);outline:0}
+.r{display:flex;align-items:center;padding:12px 0;border-bottom:1px solid var(--ln)}
+.r:last-child{border:0}
+.ic{width:40px;height:40px;border-radius:10px;background:var(--bg);display:flex;align-items:center;justify-content:center;font-size:20px;margin-right:12px}
+.rt{flex:1}
+.rt b{display:block}
+.rt small{color:var(--mu)}
+.am{font-weight:600}
+.scroll{display:flex;gap:10px;overflow-x:auto;padding:4px 0}
+.ac{min-width:140px;background:var(--card);border-radius:16px;padding:14px;flex-shrink:0}
 .ac.hide{opacity:.55}
-.ac span{font-size:22px;margin-bottom:8px}.ac b{font-size:17px;margin-top:2px}
-.card{background:var(--card);border-radius:22px;padding:6px 14px;border:1px solid var(--ln)}
-.dh{font-size:12px;color:var(--mu);padding:12px 0 2px;font-weight:600}
-.r{display:flex;align-items:center;gap:12px;padding:11px 0;border-bottom:1px solid var(--ln)}
-.card>.r:last-child{border:0}
-.ic{width:42px;height:42px;border-radius:14px;background:var(--in);display:grid;place-items:center;font-size:20px;flex:none}
-.rt{flex:1;min-width:0}.rt b{display:block;font-weight:600}.rt small{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.am{font-weight:600;white-space:nowrap}.am.e{color:var(--r)}.am.i{color:var(--g)}
-.em{text-align:center;color:var(--mu);padding:30px 0;line-height:1.6}
-.mn{display:flex;align-items:center;justify-content:space-between;margin:14px 0}
-.mn b{text-transform:capitalize;font-size:18px}
-.mn button{width:38px;height:38px;border-radius:50%;border:0;background:var(--card);color:var(--tx);font-size:18px;border:1px solid var(--ln)}
-.sum{display:flex;gap:10px;margin-bottom:12px}.sum>div{flex:1;background:var(--card);border:1px solid var(--ln);border-radius:18px;padding:12px 14px}
-.sum b{display:block;font-size:17px;margin-top:2px}
-.dn{display:flex;align-items:center;gap:18px;padding:12px 4px}
-.dn svg{width:140px;flex:none}.lg{flex:1;font-size:13px}.lg div{display:flex;align-items:center;gap:7px;padding:3px 0}.lg i{width:9px;height:9px;border-radius:50%;flex:none}.lg span{margin-left:auto;color:var(--mu)}
-.bars{display:flex;align-items:flex-end;gap:8px;height:150px;padding:14px 4px 0}
-.bc{flex:1;display:flex;flex-direction:column;align-items:center;gap:6px;height:100%;justify-content:flex-end}
-.bp{display:flex;gap:3px;align-items:flex-end;flex:1;width:100%}.bp i{flex:1;border-radius:6px 6px 2px 2px;min-height:2px}
-.bc small{font-size:11px}
-.btn{width:100%;border:0;border-radius:16px;padding:15px;font-size:16px;font-weight:600;background:var(--ac);color:#fff;margin-top:12px}
-.btn.s{background:var(--in);color:var(--tx)}.btn.d{background:rgba(229,72,77,.14);color:var(--r)}
-nav{position:fixed;left:0;right:0;bottom:0;display:grid;grid-template-columns:repeat(5,1fr);align-items:center;padding:8px 10px calc(8px + env(safe-area-inset-bottom,0px));background:color-mix(in srgb,var(--card) 82%,transparent);-webkit-backdrop-filter:blur(22px);backdrop-filter:blur(22px);border-top:1px solid var(--ln);z-index:10}
-nav button{background:none;border:0;color:var(--mu);display:flex;flex-direction:column;align-items:center;gap:3px;font-size:10.5px;padding:4px 0}
-nav button.on{color:var(--ac)}nav svg{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
-nav .fab{width:54px;height:54px;border-radius:50%;background:linear-gradient(135deg,#2bb5a0,#157a7a);color:#fff;justify-self:center;margin-top:-26px;box-shadow:0 10px 22px -6px rgba(21,122,122,.6);justify-content:center}
-nav .fab svg{stroke-width:2.4}
-#ov{position:fixed;inset:0;background:rgba(0,0,0,.45);display:none;align-items:flex-end;z-index:20}#ov.on{display:flex}
-#sh{background:var(--card);width:100%;max-width:520px;margin:0 auto;max-height:92%;overflow:auto;border-radius:28px 28px 0 0;padding:10px 18px calc(22px + env(safe-area-inset-bottom,0px));animation:up .25s ease}
-@keyframes up{from{transform:translateY(50px);opacity:0}}
-.gb{width:40px;height:4px;border-radius:2px;background:var(--ln);margin:0 auto 14px;background:var(--mu);opacity:.4}
-.sg{display:flex;background:var(--in);border-radius:14px;padding:3px}.sg button{flex:1;border:0;background:none;padding:9px;border-radius:11px;font-size:14px;font-weight:600;color:var(--mu)}
-.sg button.on{background:var(--card);color:var(--tx);box-shadow:0 1px 4px rgba(0,0,0,.12)}
-.big{width:100%;border:0;background:none;color:var(--tx);font-size:46px;font-weight:700;text-align:center;padding:18px 0 4px;outline:0}
-.ch{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0}.ch button{border:1.5px solid transparent;background:var(--in);color:var(--tx);border-radius:14px;padding:8px 12px;font-size:14px}
-.ch button.on{border-color:var(--ac);background:color-mix(in srgb,var(--ac) 14%,transparent)}
-.f{width:100%;background:var(--in);border:0;border-radius:14px;padding:13px 14px;font-size:16px;color:var(--tx);margin-top:10px;appearance:none;-webkit-appearance:none;outline:0}
-label{display:block;font-size:12px;color:var(--mu);margin:12px 4px -4px}
-.gr{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:4px}.st{background:var(--card);border:1px solid var(--ln);border-radius:18px;padding:14px;text-align:center}.st b{display:block;font-size:26px}
-.qa{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}.qa button{background:var(--card);border:1px solid var(--ln);border-radius:18px;padding:12px 0;color:var(--tx);font-size:12px;display:flex;flex-direction:column;align-items:center;gap:4px}.qa span{font-size:22px}
-.kv{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--ln)}.card>.kv:last-child{border:0}
-textarea.f{min-height:100px;resize:none;font-family:inherit}
-.total-all{text-align:center;margin:8px 0 16px;font-size:13px;color:var(--mu)}
-.cal{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;margin-top:8px}
-.cal div{aspect-ratio:1;display:grid;place-items:center;border-radius:10px;font-size:13px;background:var(--in)}
-.cal .has{background:var(--ac);color:#fff;font-weight:600}
-.cal .today{outline:2px solid var(--ac)}
-
 .pay-card{background:var(--card);border-radius:22px;padding:16px;border:1px solid var(--ln);margin:12px 0}
 .pay-item{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--ln);font-size:14px}
 .pay-item:last-child{border:0}
 .need{color:var(--r);font-weight:600}
 .ok{color:var(--g)}
+nav{position:fixed;bottom:0;left:0;right:0;background:var(--sb);border-top:1px solid var(--ln);display:flex;justify-content:space-around;padding:8px 0 20px;z-index:10}
+nav button{background:0;border:0;color:var(--mu);font-size:11px;display:flex;flex-direction:column;align-items:center;gap:2px}
+nav button.on{color:var(--ac)}
+#ov{position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:100;display:none;align-items:flex-end;justify-content:center}
+#ov.on{display:flex}
+#sh{background:var(--card);width:100%;max-width:480px;border-radius:20px 20px 0 0;padding:20px;max-height:90vh;overflow:auto}
+.bars{display:flex;align-items:flex-end;height:100px;gap:4px}
+.bc{flex:1;display:flex;flex-direction:column;align-items:center}
+.bp{width:100%;display:flex;flex-direction:column;justify-content:flex-end;height:80px}
+.bp i{display:block;width:100%;border-radius:3px 3px 0 0}
+.em{text-align:center;color:var(--mu);padding:30px}
+.cal{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;text-align:center}
+.cal div{padding:8px 0;border-radius:8px;font-size:14px}
+.cal .on{background:var(--ac);color:#fff}
+.qa{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.qa button{background:var(--card);border:1px solid var(--ln);border-radius:18px;padding:12px 0;color:var(--tx);font-size:12px;display:flex;flex-direction:column;align-items:center;gap:4px}
+.qa span{font-size:22px}
 </style>
 </head>
 <body>
 <div id="v"></div>
 <nav id="nv"></nav>
 <div id="ov"><div id="sh"></div></div>
-<label id="hp" style="position:fixed;left:-99px;opacity:0;pointer-events:none"><input type="checkbox" switch></label>
 <script>
 const K='fin1',$=s=>document.querySelector(s),p2=n=>String(n).padStart(2,'0');
 let S={acc:[{id:1,name:'Карта',type:'💳',bal:0,hide:false},{id:2,name:'Наличные',type:'💵',bal:0,hide:false}],tx:[]};
 try{const r=localStorage.getItem(K);if(r)S=JSON.parse(r)}catch(e){}
 S.sh=S.sh||[];S.or=S.or||[];S.set=S.set||{};
-S.pay=S.pay||[
-  {id:1,name:'Машина (аренда)',amount:300,type:'weekly',day:1,note:'Каждый понедельник'},
-  {id:2,name:'Квартира',amount:500,type:'monthly',day:26,note:'26 числа'},
-  {id:3,name:'Коммунальные',amount:185,type:'monthly',day:24,note:'24-25 числа'},
-  {id:4,name:'Кредит',amount:70,type:'monthly',day:21,note:'До 21 числа'}
-];
-S.acc.forEach(a=>{if(a.hide===undefined)a.hide=false});
-const save=()=>{try{localStorage.setItem(K,JSON.stringify(S))}catch(e){}};
-const EC={'Еда':'🛒','Транспорт':'🚕','Дом':'🏠','Кафе':'☕','Здоровье':'💊','Развлечения':'🎮','Покупки':'🛍','Связь':'📱','Другое':'📦'};
-const IC={'Зарплата':'💼','Подработка':'⚡','Подарок':'🎁','Прочее':'💰'};
-const TE={'Бензин':'⛽','Газ':'🔥','Аренда авто':'🚗','Авто: другое':'📦'},TI={'Такси: карта':'💳','Такси: наличные':'💵','Такси: чаевые':'🙏'};
-const CI={...EC,...IC,...TE,...TI},COL=['#37c2a8','#5b8def','#f5a524','#ff6b6b','#a78bfa','#f472b6','#84cc16','#22d3ee','#94a3b8'];
-const money=n=>(n<0?'−':'')+Math.abs(n).toLocaleString('ru-RU',{minimumFractionDigits:2,maximumFractionDigits:2})+' Br';
-const esc=s=>String(s||'').replace(/[&<>"]/g,c=>({'&':'&','<':'<','>':'>','"':'"'}[c]));
 const uid=()=>Date.now()*1000+Math.floor(Math.random()*1000);
-
+function ensureTaxiCash(){
+  if(!S.acc.find(a=>a.taxiCash)){
+    const id=uid();
+    S.acc.push({id,name:'Наличка такси',type:'💵',bal:0,hide:true,taxiCash:true});
+    S.tcId=id;
+  } else {
+    const e=S.acc.find(a=>a.taxiCash);
+    if(e) S.tcId=e.id;
+  }
+}
 function ensureEnvelope(){
   if(!S.acc.find(a=>a.envelope)){
     const id=uid();
@@ -115,31 +90,37 @@ function ensureEnvelope(){
     if(e) S.envId=e.id;
   }
 }
-
-ensureEnvelope();
-
+ensureEnvelope();ensureTaxiCash();
+S.pay=S.pay||[
+  {id:1,name:'Машина (аренда)',amount:300,type:'weekly',day:1,note:'Каждый понедельник'},
+  {id:2,name:'Квартира',amount:500,type:'monthly',day:26,note:'26 числа'},
+  {id:3,name:'Коммунальные',amount:185,type:'monthly',day:24,note:'24-25 числа'},
+  {id:4,name:'Кредит',amount:70,type:'monthly',day:21,note:'До 21 числа'}
+];
+S.acc.forEach(a=>{if(a.hide===undefined)a.hide=false});
+const save=()=>{try{localStorage.setItem(K,JSON.stringify(S))}catch(e){}};
+S.EC=S.EC||{'Еда':'🛒','Транспорт':'🚕','Дом':'🏠','Кафе':'☕','Здоровье':'💊','Развлечения':'🎮','Покупки':'🛍','Связь':'📱','Другое':'📦'};
+S.IC=S.IC||{'Зарплата':'💼','Подработка':'⚡','Подарок':'🎁','Прочее':'💰'};
+const EC=S.EC, IC=S.IC;
+const TE={'Бензин':'⛽','Газ':'🔥','Аренда авто':'🚗','Авто: другое':'📦'},TI={'Такси: карта':'💳','Такси: наличные':'💵','Такси: чаевые':'🙏'};
 const today=()=>{const d=new Date();return d.getFullYear()+'-'+p2(d.getMonth()+1)+'-'+p2(d.getDate())};
-const bal=a=>S.tx.reduce((s,t)=>t.t=='i'&&t.a==a.id?s+t.m:t.t=='e'&&t.a==a.id?s-t.m:t.t=='t'?s+(t.to==a.id?t.m:0)-(t.a==a.id?t.m:0):s,a.bal);
-const sum=(m,k)=>S.tx.filter(t=>t.t==k&&t.d.slice(0,7)==m).reduce((s,t)=>s+t.m,0);
-const AN=id=>(S.acc.find(a=>a.id==id)||{name:'—'}).name;
-const srt=a=>a.slice().sort((x,y)=>y.d.localeCompare(x.d)||y.id-x.id);
+const money=n=> (n||0).toLocaleString('ru-RU',{minimumFractionDigits:2,maximumFractionDigits:2})+' Br';
+const num=s=>parseFloat(String(s||'').replace(',','.'))||0;
+const esc=s=>String(s||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const bal=a=>a.bal+(S.tx||[]).reduce((s,t)=>{if(t.a==a.id)return s+(t.t=='i'?t.m:t.t=='e'?-t.m:0);if(t.to==a.id&&t.t=='t')return s+t.m;return s},0);
+const hrs=(a,b)=>{if(!a||!b)return 0;const [ah,am]=a.split(':').map(Number),[bh,bm]=b.split(':').map(Number);let h=(bh*60+bm)-(ah*60+am);if(h<0)h+=1440;return +(h/60).toFixed(1)};
 const dl=d=>{const t=today(),y=new Date();y.setDate(y.getDate()-1);const ys=y.getFullYear()+'-'+p2(y.getMonth()+1)+'-'+p2(y.getDate());return d==t?'Сегодня':d==ys?'Вчера':new Date(d+'T12:00').toLocaleDateString('ru-RU',{day:'numeric',month:'long'})};
-let tab='home',M=today().slice(0,7);
-const mv=k=>{const d=new Date(+M.slice(0,4),+M.slice(5)-1+k,1);M=d.getFullYear()+'-'+p2(d.getMonth()+1);render()};
-const ml=m=>new Date(m+'-01T12:00').toLocaleDateString('ru-RU',{month:'long',year:'numeric'});
-const row=t=>{const tr=t.t=='t';return `<div class="r" onclick="delSheet(${t.id})"><div class="ic">${tr?'🔁':CI[t.c]||'📦'}</div><div class="rt"><b>${tr?'Перевод':esc(t.c)}</b><small>${tr?AN(t.a)+' → '+AN(t.to):AN(t.a)}${t.n?' · '+esc(t.n):''}</small></div><span class="am ${t.t}">${t.t=='e'?'−':t.t=='i'?'+':''}${money(t.m)}</span></div>`};
-const grp=a=>{if(!a.length)return '<div class="em">Пока нет операций<br>Нажмите «+», чтобы добавить</div>';let o='',q='';a.forEach(t=>{if(t.d!=q){q=t.d;o+=`<div class="dh">${dl(t.d)}</div>`}o+=row(t)});return `<div class="card">${o}</div>`};
-const mnav=()=>`<div class="mn"><button onclick="mv(-1)">‹</button><b>${ml(M)}</b><button onclick="mv(1)">›</button></div>`;
-
+const grp=arr=>{const g={};arr.forEach(t=>{(g[t.d]=g[t.d]||[]).push(t)});return Object.keys(g).sort().reverse().map(d=>`<div class="card"><small style="color:var(--mu)">${dl(d)}</small>${g[d].map(t=>`<div class="r" onclick="delTx(${t.id})"><div class="ic">${t.t=='i'?'💰':t.t=='e'?'🛒':'🔄'}</div><div class="rt"><b>${esc(t.c||'Перевод')}</b><small>${t.n||''}</small></div><span class="am" style="color:${t.t=='e'?'var(--r)':'inherit'}">${t.t=='e'?'-':''}${money(t.m)}</span></div>`).join('')}</div>`).join('')};
+const srt=a=>[...a].sort((x,y)=>y.d.localeCompare(x.d)||y.id-x.id);
+let tab='ops',TK='карта',TC='Бензин',QM='';
 function upcomingPayments(){
   const now=new Date();
   const y=now.getFullYear(), m=now.getMonth(), d=now.getDate();
   const result=[];
-  S.pay.forEach(p=>{
+  (S.pay||[]).forEach(p=>{
     let nextDate=null;
     if(p.type==='weekly'){
-      // next Monday
-      const day=now.getDay(); // 0=Sun,1=Mon
+      const day=now.getDay();
       let add=(1-day+7)%7;
       if(add===0) add=7;
       nextDate=new Date(y,m,d+add);
@@ -154,7 +135,6 @@ function upcomingPayments(){
   });
   return result.sort((a,b)=>a.next-b.next);
 }
-
 function spendFromEnv(payId, defaultAmount){
   const env=S.acc.find(a=>a.envelope);
   if(!env){alert('Конверт не найден');return}
@@ -169,114 +149,60 @@ function spendFromEnv(payId, defaultAmount){
   save();render();
 }
 function freeMoney(){
-  return S.acc.filter(a=>!a.hide && a.id!==S.yid && !a.envelope).reduce((s,a)=>s+bal(a),0);
+  return S.acc.filter(a=>!a.hide && a.id!==S.yid && !a.envelope && !a.taxiCash).reduce((s,a)=>s+bal(a),0);
 }
 const V={
 home(){
-  const visible=S.acc.filter(a=>!a.hide && a.id!==S.yid && !a.envelope);
-  const all=S.acc.filter(a=>a.id!==S.yid && !a.envelope);
+  const visible=S.acc.filter(a=>!a.hide && a.id!==S.yid && !a.envelope && !a.taxiCash);
+  const all=S.acc.filter(a=>a.id!==S.yid && !a.envelope && !a.taxiCash);
   const tot=visible.reduce((s,a)=>s+bal(a),0);
   const totAll=all.reduce((s,a)=>s+bal(a),0);
   const m=today().slice(0,7);
-  return `<div class="hero"><small>Общий баланс</small><h1>${money(tot)}</h1><div class="hs"><div>Доходы за месяц<b>${money(sum(m,'i'))}</b></div><div>Расходы за месяц<b>${money(sum(m,'e'))}</b></div></div></div>
-<div class="total-all">Всего (включая скрытые): <b>${money(totAll)}</b></div>
-<h2>Счета</h2><div class="scroll">${S.acc.filter(a=>a.id!==S.yid || a.envelope).map(a=>`<div class="ac ${a.hide?'hide':''}" onclick="accSheet(${a.id})"><span>${a.type}</span><small>${esc(a.name)}${a.hide?' 👁‍':''}</small><b>${money(bal(a))}</b></div>`).join('')}</div>
-<h2>Обязательные платежи</h2>
-<div class="pay-card">
-  <div style="display:flex;justify-content:space-between;margin-bottom:12px;font-size:15px"><span>В конверте «На платежи»</span><b style="font-size:17px">${money(bal(S.acc.find(a=>a.envelope)||{bal:0}))}</b></div>
-  ${(()=>{
-  let left=bal(S.acc.find(a=>a.envelope)||{bal:0});
-  return upcomingPayments().slice(0,5).map(p=>{
-    const covered=left>=p.amount;
-    if(covered) left-=p.amount;
-    return `<div class="pay-item"><div><b>${esc(p.name)}</b><small style="display:block;color:var(--mu)">${p.note} · через ${p.daysLeft} дн.</small></div><div style="text-align:right"><span class="${covered?'ok':'need'}">${money(p.amount)}</span><br><button class="btn s" style="padding:6px 10px;font-size:12px;margin-top:4px" onclick="spendFromEnv(${p.id},${p.amount})">Списать</button></div></div>`;
-  }).join('');
-})()}
-  <div style="margin-top:10px;font-size:13px;color:var(--mu)">Нужно ещё отложить: <b class="need">${money(Math.max(0, upcomingPayments().reduce((s,p)=>s+p.amount,0) - bal(S.acc.find(a=>a.envelope)||{bal:0})))}</b></div>
+  const inc=S.tx.filter(t=>t.t=='i'&&t.d.startsWith(m)).reduce((s,t)=>s+t.m,0);
+  const exp=S.tx.filter(t=>t.t=='e'&&t.d.startsWith(m)).reduce((s,t)=>s+t.m,0);
+  return `<div class="card" style="background:linear-gradient(135deg,#1a5c4a,#2d8a6e);color:#fff;padding:20px">
+    <small>Общий баланс</small><div style="font-size:36px;font-weight:700">${money(tot)}</div>
+    <div style="display:flex;gap:16px;margin-top:12px"><div><small>Доходы за месяц</small><b>${money(inc)}</b></div><div><small>Расходы за месяц</small><b>${money(exp)}</b></div></div>
+  </div>
+  <div style="text-align:center;color:var(--mu);font-size:13px;margin:4px 0 12px">Всего (включая скрытые): ${money(totAll)}</div>
+  <h2>Счета</h2><div class="scroll">${S.acc.filter(a=>a.id!==S.yid || a.envelope).map(a=>`<div class="ac ${a.hide?'hide':''}" onclick="accSheet(${a.id})"><span>${a.type}</span><small>${esc(a.name)}${a.hide?' 👁‍':''}</small><b>${money(bal(a))}</b></div>`).join('')}</div>
+  <h2>Обязательные платежи</h2>
+  <div class="pay-card">
+    <div style="display:flex;justify-content:space-between;margin-bottom:12px;font-size:15px"><span>В конверте «На платежи»</span><b style="font-size:17px">${money(bal(S.acc.find(a=>a.envelope)||{bal:0}))}</b></div>
+    ${(()=>{
+      let left=bal(S.acc.find(a=>a.envelope)||{bal:0});
+      return upcomingPayments().slice(0,5).map(p=>{
+        const covered=left>=p.amount;
+        if(covered) left-=p.amount;
+        return `<div class="pay-item"><div><b>${esc(p.name)}</b><small style="display:block;color:var(--mu)">${p.note} · через ${p.daysLeft} дн.</small></div><div style="text-align:right"><span class="${covered?'ok':'need'}">${money(p.amount)}</span><br><button class="btn s" style="padding:6px 10px;font-size:12px;margin-top:4px" onclick="spendFromEnv(${p.id},${p.amount})">Списать</button></div></div>`;
+      }).join('');
+    })()}
+    <div style="margin-top:10px;font-size:13px;color:var(--mu)">Нужно ещё отложить: <b class="need">${money(Math.max(0, upcomingPayments().reduce((s,p)=>s+p.amount,0) - bal(S.acc.find(a=>a.envelope)||{bal:0})))}</b></div>
+  </div>
+  <h2>Последние операции</h2>${grp(srt(S.tx).slice(0,8))}`
+},
+ops(){
+  return `<div class="sg"><button class="${tab=='ops'?'on':''}" onclick="tab='ops';render()">Список</button><button class="${tab=='stats'?'on':''}" onclick="tab='stats';render()">Анализ</button></div>`+
+  (tab=='ops'?grp(srt(S.tx)):stats())
+},
+stats(){
+  const ms=[...new Set(S.tx.map(t=>t.d.slice(0,7)))].sort().slice(-6);
+  const sum=(m,t)=>S.tx.filter(x=>x.d.startsWith(m)&&x.t==t).reduce((s,x)=>s+x.m,0);
+  const mx=Math.max(1,...ms.map(m=>Math.max(sum(m,'i'),sum(m,'e'))));
+  return `<h2>Текущая неделя</h2><div class="card">${weekChart()}</div>
+  <h2>Доходы и расходы · 6 месяцев</h2><div class="card"><div class="bars">${ms.map(m=>`<div class="bc"><div class="bp"><i style="height:${sum(m,'i')/mx*100}%;background:var(--g)"></i><i style="height:${sum(m,'e')/mx*100}%;background:var(--r)"></i></div><small>${new Date(m+'-01T12:00').toLocaleDateString('ru-RU',{month:'short'}).replace('.','')}</small></div>`).join('')}</div></div>`
+},
+acc(){setTimeout(popCats,0);return `<h2>Мои счета</h2><div class="card">${S.acc.filter(a=>a.id!==S.yid || a.envelope).map(a=>`<div class="r" onclick="accSheet(${a.id})"><div class="ic">${a.type}</div><div class="rt"><b>${esc(a.name)}${a.hide?' (скрыт)':''}</b></div><span class="am">${money(bal(a))}</span></div>`).join('')}</div><button class="btn" onclick="accSheet()">+ Новый счёт</button>
+<h2>Категории</h2>
+<div class="card" style="padding:12px">
+  <small>Расходы</small>
+  <div class="ch" id="ecBtns"></div>
+  <button class="btn s" onclick="addCat('e')">+ Категория расхода</button>
+  <small style="margin-top:12px;display:block">Доходы</small>
+  <div class="ch" id="icBtns"></div>
+  <button class="btn s" onclick="addCat('i')">+ Категория дохода</button>
 </div>
-<h2>Последние операции</h2>${grp(srt(S.tx).slice(0,8))}`},
-ops(){const a=srt(S.tx.filter(t=>t.d.slice(0,7)==M));return seg()+mnav()+`<div class="sum"><div><small>Доходы</small><b style="color:var(--g)">${money(sum(M,'i'))}</b></div><div><small>Расходы</small><b style="color:var(--r)">${money(sum(M,'e'))}</b></div></div>`+grp(a)},
-stats(){const c={};S.tx.filter(t=>t.t=='e'&&t.d.slice(0,7)==M).forEach(t=>c[t.c]=(c[t.c]||0)+t.m);
-const L=Object.entries(c).sort((a,b)=>b[1]-a[1]),T=L.reduce((s,x)=>s+x[1],0);let off=0;
-const dn=T?`<div class="dn"><svg viewBox="0 0 42 42"><circle r="15.9155" cx="21" cy="21" fill="none" stroke="var(--in)" stroke-width="5"/>${L.map(([k,v],i)=>{const q=v/T*100,s=`<circle r="15.9155" cx="21" cy="21" fill="none" stroke="${COL[i%9]}" stroke-width="5" stroke-dasharray="${Math.max(q-.6,.1)} ${100-q+.6}" stroke-dashoffset="${25-off}"/>`;off+=q;return s}).join('')}</svg><div class="lg">${L.map(([k,v],i)=>`<div><i style="background:${COL[i%9]}"></i>${CI[k]||''} ${esc(k)}<span>${Math.round(v/T*100)}%</span></div>`).join('')}</div></div>`:'<div class="em">Нет расходов за этот месяц</div>';
-const ms=[];for(let i=5;i>=0;i--){const d=new Date(+M.slice(0,4),+M.slice(5)-1-i,1);ms.push(d.getFullYear()+'-'+p2(d.getMonth()+1))}
-const mx=Math.max(1,...ms.map(m=>Math.max(sum(m,'i'),sum(m,'e'))));
-return seg()+mnav()+`<div class="sum"><div><small>Расходы</small><b style="color:var(--r)">${money(T)}</b></div><div><small>Баланс месяца</small><b>${money(sum(M,'i')-T)}</b></div></div><h2>Расходы по категориям</h2><div class="card">${dn}</div><h2>Текущая неделя</h2><div class="card">${weekChart()}</div>
-<h2>Доходы и расходы · 6 месяцев</h2><div class="card"><div class="bars">${ms.map(m=>`<div class="bc"><div class="bp"><i style="height:${sum(m,'i')/mx*100}%;background:var(--g)"></i><i style="height:${sum(m,'e')/mx*100}%;background:var(--r)"></i></div><small>${new Date(m+'-01T12:00').toLocaleDateString('ru-RU',{month:'short'}).replace('.','')}</small></div>`).join('')}</div></div>`},
-acc(){return `<h2>Мои счета</h2><div class="card">${S.acc.filter(a=>a.id!==S.yid || a.envelope).map(a=>`<div class="r" onclick="accSheet(${a.id})"><div class="ic">${a.type}</div><div class="rt"><b>${esc(a.name)}${a.hide?' (скрыт)':''}</b></div><span class="am">${money(bal(a))}</span></div>`).join('')}</div><button class="btn" onclick="accSheet()">+ Новый счёт</button><h2>Звук и вибрация</h2><div class="sg"><button class="${S.set.snd===0?'':'on'}" onclick="tg('snd')">Звук</button><button class="${S.set.vib===0?'':'on'}" onclick="tg('vib')">Вибрация</button></div><h2>Данные</h2><button class="btn s" onclick="bk()">Скопировать резервную копию</button><button class="btn s" onclick="rs()">Восстановить из копии</button>`}};
-const IK={home:'M3 11l9-8 9 8v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z',ops:'M4 6h16M4 12h16M4 18h10',add:'M12 5v14M5 12h14',stats:'M5 20V11M12 20V4M19 20v-6',acc:'M3 7h16a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2zM3 7l2-3h12v3M16 13.5h2'};
-const NV=[['home','Главная'],['ops','Операции'],['add',''],['taxi','Такси'],['acc','Счета']];
-function render(){$('#v').innerHTML=V[tab]();$('#nv').innerHTML=NV.map(([k,l])=>`<button class="${k=='add'?'fab':(k==tab||k=='ops'&&tab=='stats')?'on':''}" onclick="${k=='add'?'newTx()':`tab='${k}';render();scrollTo(0,0)`}"><svg viewBox="0 0 24 24"><path d="${IK[k]}"/></svg>${l}</button>`).join('')}
-const sheet=h=>{$('#sh').innerHTML='<div class="gb"></div>'+h;$('#ov').classList.add('on')},closeS=()=>$('#ov').classList.remove('on');
-$('#ov').onclick=e=>{if(e.target.id=='ov')closeS()};
-let F={};
-function newTx(){F={t:'e',c:'',m:'',n:'',d:today(),a:S.acc[0].id,to:(S.acc[1]||S.acc[0]).id};txSheet()}
-function grab(){if(!$('#am'))return;F.m=$('#am').value;F.n=$('#nt').value;F.d=$('#dt').value||today();F.a=+$('#sa').value;if($('#to'))F.to=+$('#to').value}
-function txSheet(t){grab();if(t&&t!=F.t){F.t=t;F.c=''}
-const cs=F.t=='e'?EC:IC,opt=v=>S.acc.filter(a=>a.id!==S.yid || a.envelope).map(a=>`<option value="${a.id}" ${a.id==v?'selected':''}>${a.type} ${esc(a.name)}</option>`).join('');
-sheet(`<div class="sg">${[['e','Расход'],['i','Доход'],['t','Перевод']].map(([k,l])=>`<button class="${F.t==k?'on':''}" onclick="txSheet('${k}')">${l}</button>`).join('')}</div>
-<input class="big" id="am" inputmode="decimal" placeholder="0" value="${esc(F.m)}">
-${F.t!='t'?`<div class="ch">${Object.keys(cs).map(k=>`<button class="${F.c==k?'on':''}" onclick="grab();F.c='${k}';txSheet()">${cs[k]} ${k}</button>`).join('')}</div>`:''}
-<label>${F.t=='t'?'Со счёта':'Счёт'}</label><select class="f" id="sa">${opt(F.a)}</select>
-${F.t=='t'?`<label>На счёт</label><select class="f" id="to">${opt(F.to)}</select>`:''}
-<label>Дата</label><input class="f" type="date" id="dt" value="${F.d}"><input class="f" id="nt" placeholder="Заметка" value="${esc(F.n)}">
-<button class="btn" onclick="saveTx()">Сохранить</button>`)}
-function saveTx(){grab();const m=parseFloat(String(F.m).replace(',','.'));if(!(m>0)){$('#am').focus();return}
-if(F.t=='t'&&F.a==F.to){alert('Выберите разные счета');return}
-S.tx.push({id:uid(),t:F.t,a:F.a,to:F.t=='t'?F.to:0,m,c:F.t=='t'?'':F.c||(F.t=='e'?'Другое':'Прочее'),n:F.n.trim(),d:F.d});save();fb(F.t);closeS();render()}
-function delSheet(id){const t=S.tx.find(x=>x.id==id);if(!t)return;sheet(`<div class="r" style="border:0"><div class="ic">${t.t=='t'?'🔁':CI[t.c]||'📦'}</div><div class="rt"><b>${t.t=='t'?'Перевод':esc(t.c)}</b><small>${dl(t.d)}${t.n?' · '+esc(t.n):''}</small></div><span class="am ${t.t}">${money(t.m)}</span></div><button class="btn d" onclick="S.tx=S.tx.filter(x=>x.id!=${id});save();closeS();render()">Удалить операцию</button>`)}
-let AT='💳';
-function accSheet(id){const a=S.acc.find(x=>x.id==id);AT=a?a.type:'💳';
-const isY=a&&a.id===S.yid;
-sheet(`<h2 style="margin-top:0">${a?'Счёт':'Новый счёт'}</h2><input class="f" id="an" placeholder="Название" value="${a?esc(a.name):''}" ${isY?'disabled':''}><label>Начальный остаток</label><input class="f" id="ab" inputmode="decimal" placeholder="0" value="${a?a.bal:''}" ${isY?'disabled':''}><div class="ch">${['💳','💵','🏦','🐷','📈'].map(e=>`<button class="${e==AT?'on':''}" onclick="AT='${e}';document.querySelectorAll('.ch button').forEach(b=>b.classList.toggle('on',b.textContent==AT))">${e}</button>`).join('')}</div>
-${a&&!isY?`<button class="btn s" onclick="toggleHide(${a.id})">${a.hide?'Показать в общем балансе':'Скрыть из общего баланса'}</button>`:''}
-<button class="btn" onclick="saveAcc(${id||0})">Сохранить</button>${a&&S.acc.filter(x=>x.id!==S.yid).length>1&&!isY?`<button class="btn d" onclick="delAcc(${id})">Удалить счёт</button>`:''}`)}
-
-function toggleHide(id){const a=S.acc.find(x=>x.id==id);if(!a||a.id===S.yid)return;a.hide=!a.hide;save();closeS();render()}
-function saveAcc(id){const n=$('#an').value.trim(),b=parseFloat($('#ab').value.replace(',','.'))||0;if(!n){$('#an').focus();return}
-if(id){const a=S.acc.find(x=>x.id==id);if(a.id===S.yid)return;a.name=n;a.bal=b;a.type=AT;if(a.hide===undefined)a.hide=false}else S.acc.push({id:uid(),name:n,type:AT,bal:b,hide:false});save();closeS();render()}
-function delAcc(id){if(!confirm('Удалить счёт и все его операции?'))return;S.tx=S.tx.filter(t=>t.a!=id&&t.to!=id);S.acc=S.acc.filter(a=>a.id!=id);save();closeS();render()}
-function bk(){const s=JSON.stringify(S);(navigator.clipboard?navigator.clipboard.writeText(s):Promise.reject()).then(()=>alert('Копия скопирована. Сохраните её в заметки.'),()=>prompt('Скопируйте текст:',s))}
-function rs(){const s=prompt('Вставьте резервную копию:');if(!s)return;try{const d=JSON.parse(s);if(!d.acc||!d.tx)throw 0;S=d;S.sh=S.sh||[];S.or=S.or||[];S.set=S.set||{};
-S.pay=S.pay||[
-  {id:1,name:'Машина (аренда)',amount:300,type:'weekly',day:1,note:'Каждый понедельник'},
-  {id:2,name:'Квартира',amount:500,type:'monthly',day:26,note:'26 числа'},
-  {id:3,name:'Коммунальные',amount:185,type:'monthly',day:24,note:'24-25 числа'},
-  {id:4,name:'Кредит',amount:70,type:'monthly',day:21,note:'До 21 числа'}
-];S.acc.forEach(a=>{if(a.hide===undefined)a.hide=false});ensureEnvelope();save();render()}catch(e){alert('Не удалось прочитать данные')}}
-const seg=()=>`<div class="sg" style="margin-top:12px"><button class="${tab=='ops'?'on':''}" onclick="tab='ops';render()">Список</button><button class="${tab=='stats'?'on':''}" onclick="tab='stats';render()">Анализ</button></div>`;
-let AC;
-const beep=k=>{try{AC=AC||new(window.AudioContext||window.webkitAudioContext)();AC.resume();const t=AC.currentTime,f=k=='i'?[660,990]:k=='e'?[520,390]:[600,600],o=AC.createOscillator(),g=AC.createGain();o.connect(g);g.connect(AC.destination);o.frequency.setValueAtTime(f[0],t);o.frequency.setValueAtTime(f[1],t+.09);g.gain.setValueAtTime(.0001,t);g.gain.exponentialRampToValueAtTime(.35,t+.02);g.gain.exponentialRampToValueAtTime(.0001,t+.3);o.start(t);o.stop(t+.32)}catch(e){}};
-const hap=()=>{try{if(navigator.vibrate)navigator.vibrate([30,50,30]);else{const l=$('#hp');l.click();setTimeout(()=>l.click(),90)}}catch(e){}};
-const fb=k=>{if(S.set.snd!==0)beep(k);if(S.set.vib!==0)hap()};
-const tg=k=>{S.set[k]=S.set[k]===0?1:0;save();render();fb('t')};
-IK.taxi='M5 17h14M6 17l1.4-5.2a2 2 0 0 1 1.9-1.5h5.4a2 2 0 0 1 1.9 1.5L18 17M7 17v2.5M17 17v2.5';
-const cash=()=>S.acc.find(a=>a.type=='💵')||S.acc[0];
-const yac=()=>{let a=S.acc.find(x=>x.id==S.yid);if(!a){a={id:uid(),name:'Яндекс',type:'🚕',bal:0,hide:true};S.acc.push(a);S.yid=a.id}else{a.hide=true}return a};
-const addT=(t,a,m,c,to)=>S.tx.push({id:uid(),t,a,to:to||0,m,c,n:'',d:today(),k:1});
-const addInc=(k,m)=>addT('i',k=='карта'?yac().id:cash().id,m,'Такси: '+k);
-const num=s=>parseFloat(String(s).replace(',','.'));
-const hrs=(a,b)=>{const x=a.split(':').map(Number),y=b.split(':').map(Number);let d=y[0]*60+y[1]-x[0]*60-x[1];if(d<=0)d+=1440;return Math.round(d/60*100)/100};
-const addSh=(d,a,b,orders=0,cash=0,card=0)=>S.sh.push({id:uid(),d:d||today(),s:a,e:b,h:hrs(a,b),orders:+orders||0,cash:+cash||0,card:+card||0,ts:Date.now()});
-let TP='month',TK='карта',TC='Бензин',QM='';
-const pf=()=>{if(TP=='all')return '0000-00-00';const n=new Date(),d=new Date(n.getFullYear(),n.getMonth(),n.getDate());if(TP=='week')d.setDate(d.getDate()-(d.getDay()+6)%7);if(TP=='month')d.setDate(1);return d.getFullYear()+'-'+p2(d.getMonth()+1)+'-'+p2(d.getDate())};
-const kv=(a,b)=>`<div class="kv"><span>${a}</span><b>${b}</b></div>`;
-function calHTML(month){
-  const [y,m]=month.split('-').map(Number);
-  const first=new Date(y,m-1,1).getDay();
-  const days=new Date(y,m,0).getDate();
-  const shiftDays=new Set(S.sh.filter(x=>x.d.startsWith(month)).map(x=>+x.d.slice(8)));
-  let h='<div class="cal">';
-  for(let i=0;i<(first+6)%7;i++)h+='<div></div>';
-  for(let d=1;d<=days;d++){
-    const ds=month+'-'+p2(d);
-    const has=shiftDays.has(d);
-    const isT=ds===today();
-    h+=`<div class="${has?'has':''} ${isT?'today':''}" onclick="shDay('${ds}')">${d}</div>`;
-  }
-  return h+'</div>';
-}
-
+<h2>Звук и вибрация</h2><div class="sg"><button class="${S.set.snd===0?'':'on'}" onclick="tg('snd')">Звук</button><button class="${S.set.vib===0?'':'on'}" onclick="tg('vib')">Вибрация</button></div><h2>Данные</h2><button class="btn s" onclick="bk()">Скопировать резервную копию</button><button class="btn s" onclick="rs()">Восстановить из копии</button>`}};
 function weekChart(){
   const days=['Пн','Вт','Ср','Чт','Пт','Сб','Вс'];
   const now=new Date();
@@ -297,19 +223,90 @@ function weekChart(){
   });
   return html+'</div>';
 }
-V.taxi=()=>{const s=pf(),X=S.tx.filter(t=>t.k&&t.d>=s),inc=X.filter(t=>t.t=='i'),ex=X.filter(t=>t.t=='e'),I=inc.reduce((a,t)=>a+t.m,0),E=ex.reduce((a,t)=>a+t.m,0),sh=S.sh.filter(x=>x.d>=s),H=sh.reduce((a,x)=>a+x.h,0),O=S.or.filter(x=>x.d>=s).reduce((a,x)=>a+x.n,0),D=new Set(sh.map(x=>x.d)).size,q=QM;QM='';
-const by=a=>{const o={};a.forEach(t=>o[t.c]=(o[t.c]||0)+t.m);return Object.entries(o)},rc=S.sh.filter(x=>x.ts>=(S.rc||new Date(new Date().getFullYear(),new Date().getMonth(),1).getTime())).length,ya=bal(S.acc.find(a=>a.id==S.yid)||{id:0,bal:0});
-const curM=today().slice(0,7);
-return `<div class="sg" style="margin-top:12px">${[['today','Сегодня'],['week','Неделя'],['month','Месяц'],['all','Всё']].map(([k,l])=>`<button class="${TP==k?'on':''}" onclick="TP='${k}';render()">${l}</button>`).join('')}</div>
-<div class="hero" style="margin-top:14px"><small>Чистыми</small><h1>${money(I-E)}</h1><div class="hs"><div>Доход<b>${money(I)}</b></div><div>Расходы<b>${money(E)}</b></div></div></div>
-<h2>Добавить</h2><div class="qa">${[['⏱','Смена','shS()'],['💰','Доход','tiS()'],['⛽','Расход','teS()'],['🚗','Аренда','rentS()']].map(([i,l,f])=>`<button onclick="${f}"><span>${i}</span>${l}</button>`).join('')}</div>
-<h2>Статистика</h2><div class="gr"><div class="st"><b>${H.toFixed(1)}</b><small>часов</small></div><div class="st"><b>${D}</b><small>дней</small></div><div class="st"><b>${O}</b><small>заказов</small></div><div class="st"><b>${rc}</b><small>чеков к сдаче</small></div></div>
-<div class="card" style="margin-top:12px">${kv('🚕 Баланс Яндекса (скрыт)',money(ya))}${kv('Доход на заказ',O?money(I/O):'—')}${kv('Чистыми на заказ',O?money((I-E)/O):'—')}${kv('Чистыми в час',H?money((I-E)/H):'—')}${by(inc).map(([c,v])=>kv(CI[c]+' '+c.replace('Такси: ',''),money(v))).join('')}${by(ex).map(([c,v])=>kv(CI[c]+' '+c,'−'+money(v))).join('')}</div>
-<button class="btn" onclick="wdS()">Вывести с Яндекса на счёт</button><button class="btn s" onclick="S.rc=Date.now();save();render()">Сдал чеки (обнулить)</button>
-<h2>Календарь смен · ${ml(curM)}</h2><div class="card">${calHTML(curM)}</div>
-<h2>Последние смены</h2>${S.sh.length?`<div class="card">${S.sh.slice(-8).reverse().map(x=>`<div class="r" onclick="shS(null,${x.id})"><div class="ic">⏱</div><div class="rt"><b>${x.s}–${x.e}</b><small>${dl(x.d)} · ${x.orders||0} зак.</small></div><span class="am">${x.h} ч</span></div>`).join('')}</div>`:'<div class="em">Смен пока нет</div>'}`};
-const chips=(o,cur,v)=>`<div class="ch">${o.map(([k,l])=>`<button data-k="${k}" class="${k==cur?'on':''}" onclick="${v}='${k}';document.querySelectorAll('.ch button').forEach(b=>b.classList.toggle('on',b.dataset.k==${v}))">${l}</button>`).join('')}</div>`;
-const opts=(v,ex)=>S.acc.filter(a=>a.id!=ex&&(a.id!==S.yid || a.envelope)).map(a=>`<option value="${a.id}" ${a.id==v?'selected':''}>${a.type} ${esc(a.name)}</option>`).join('');
+let F={};
+function newTx(){F={t:'e',c:'',m:'',n:'',d:today(),a:S.acc[0].id,to:(S.acc[1]||S.acc[0]).id};txSheet(); setTimeout(()=>{if($('#am'))$('#am').value=''},50)}
+function txSheet(t){grab();if(t&&t!=F.t){F.t=t;F.c=''}
+  const cs=F.t=='e'?EC:IC,opt=v=>S.acc.filter(a=>a.id!==S.yid || a.envelope).map(a=>`<option value="${a.id}" ${a.id==v?'selected':''}>${a.type} ${esc(a.name)}</option>`).join('');
+  sheet(`<div class="sg"><button class="${F.t=='e'?'on':''}" onclick="txSheet('e')">Расход</button><button class="${F.t=='i'?'on':''}" onclick="txSheet('i')">Доход</button><button class="${F.t=='t'?'on':''}" onclick="txSheet('t')">Перевод</button></div>
+  ${F.t!='t'?`<div class="ch">${Object.keys(cs).map(k=>`<button class="${F.c==k?'on':''}" onclick="F.c='${k}';txSheet()">${cs[k]} ${k}</button>`).join('')}</div>`:''}
+  <input class="big" id="am" inputmode="decimal" placeholder="0" value="${F.m||''}">
+  ${F.t!='t'?`<label>Счёт</label><select class="f" id="ac">${opt(F.a)}</select>`:`<label>Со счёта</label><select class="f" id="ac">${opt(F.a)}</select><label>На счёт</label><select class="f" id="to">${opt(F.to)}</select>`}
+  <label>Дата</label><input class="f" type="date" id="dt" value="${F.d}">
+  <input class="f" id="nt" placeholder="Заметка" value="${esc(F.n||'')}">
+  <button class="btn" onclick="saveTx()">Сохранить</button>`)}
+function grab(){const a=$('#am'),ac=$('#ac'),to=$('#to'),dt=$('#dt'),nt=$('#nt');if(a)F.m=a.value;if(ac)F.a=+ac.value;if(to)F.to=+to.value;if(dt)F.d=dt.value;if(nt)F.n=nt.value}
+function saveTx(){grab();const m=parseFloat(String(F.m).replace(',','.'));if(!(m>0)){$('#am').focus();return}
+  if(F.t=='t'){if(F.a==F.to)return;addT('t',F.a,m,'',F.to)}else addT(F.t,F.a,m,F.c,0,F.n);
+  save();fb(F.t);closeS();render()}
+function addT(t,a,m,c,to,n){S.tx.push({id:uid(),t,a,to:to||0,m,c:c||'',n:n||'',d:F.d||today()})}
+function delTx(id){if(confirm('Удалить операцию?')){S.tx=S.tx.filter(t=>t.id!=id);save();render()}}
+let AT='💳';
+function accSheet(id){const a=S.acc.find(x=>x.id==id);AT=a?a.type:'💳';
+  const isY=a&&a.id===S.yid;
+  sheet(`<h2 style="margin-top:0">${a?'Счёт':'Новый счёт'}</h2>
+  <input class="f" id="an" placeholder="Название" value="${a?esc(a.name):''}" ${isY?'disabled':''}>
+  <div class="ch">${['💳','💵','🏦','💰','🪙'].map(e=>`<button class="${AT==e?'on':''}" onclick="AT='${e}';accSheet(${id||0})">${e}</button>`).join('')}</div>
+  <input class="f" id="ab" inputmode="decimal" placeholder="Начальный баланс" value="${a?a.bal:''}" ${isY?'disabled':''}>
+  ${a&&!isY?`<button class="btn s" onclick="toggleHide(${a.id})">${a.hide?'Показать в общем балансе':'Скрыть из общего баланса'}</button>`:''}
+  <button class="btn" onclick="saveAcc(${id||0})">Сохранить</button>${a&&S.acc.filter(x=>x.id!==S.yid).length>1&&!isY?`<button class="btn d" onclick="delAcc(${id})">Удалить счёт</button>`:''}`)}
+function toggleHide(id){const a=S.acc.find(x=>x.id==id);if(!a||a.id===S.yid)return;a.hide=!a.hide;save();closeS();render()}
+function saveAcc(id){const n=$('#an').value.trim(),b=parseFloat($('#ab').value.replace(',','.'))||0;if(!n){$('#an').focus();return}
+if(id){const a=S.acc.find(x=>x.id==id);if(a.id===S.yid)return;a.name=n;a.bal=b;a.type=AT;if(a.hide===undefined)a.hide=false}else S.acc.push({id:uid(),name:n,type:AT,bal:b,hide:false});save();closeS();render()}
+function delAcc(id){if(!confirm('Удалить счёт и все его операции?'))return;S.tx=S.tx.filter(t=>t.a!=id&&t.to!=id);S.acc=S.acc.filter(a=>a.id!=id);save();closeS();render()}
+function popCats(){
+  const ec=document.getElementById('ecBtns'), ic=document.getElementById('icBtns');
+  if(!ec||!ic)return;
+  ec.innerHTML=Object.keys(S.EC||{}).map(k=>`<button data-type="e" data-key="${esc(k)}">${S.EC[k]||''} ${esc(k)}</button>`).join('');
+  ic.innerHTML=Object.keys(S.IC||{}).map(k=>`<button data-type="i" data-key="${esc(k)}">${S.IC[k]||''} ${esc(k)}</button>`).join('');
+  [...ec.children,...ic.children].forEach(b=>b.onclick=()=>editCat(b.dataset.type,b.dataset.key));
+}
+function addCat(type){
+  try{
+    const name=prompt(type=='e'?'Название категории расхода:':'Название категории дохода:');
+    if(!name||!name.trim())return;
+    const emoji=prompt('Эмодзи:','📦')||'📦';
+    if(type=='e'){S.EC=S.EC||{}; S.EC[name.trim()]=emoji;}
+    else {S.IC=S.IC||{}; S.IC[name.trim()]=emoji;}
+    save();render();
+  }catch(e){alert('Ошибка: '+e.message)}
+}
+function editCat(type,key){
+  const action=prompt('1 - переименовать\\n2 - удалить','1');
+  if(action=='2'){
+    if(confirm('Удалить категорию «'+key+'»?')){
+      if(type=='e') delete S.EC[key]; else delete S.IC[key];
+      save();render();
+    }
+  } else if(action=='1'){
+    const newName=prompt('Новое название:',key);
+    if(newName&&newName.trim()&&newName!==key){
+      const emoji=type=='e'?S.EC[key]:S.IC[key];
+      if(type=='e'){delete S.EC[key]; S.EC[newName.trim()]=emoji}
+      else {delete S.IC[key]; S.IC[newName.trim()]=emoji}
+      save();render();
+    }
+  }
+}
+function bk(){prompt('Скопируй текст:',JSON.stringify(S))}
+function rs(){const s=prompt('Вставьте резервную копию:');if(!s)return;try{const d=JSON.parse(s);if(!d.acc||!d.tx)throw 0;S=d;S.sh=S.sh||[];S.or=S.or||[];S.set=S.set||{};
+S.pay=S.pay||[
+  {id:1,name:'Машина (аренда)',amount:300,type:'weekly',day:1,note:'Каждый понедельник'},
+  {id:2,name:'Квартира',amount:500,type:'monthly',day:26,note:'26 числа'},
+  {id:3,name:'Коммунальные',amount:185,type:'monthly',day:24,note:'24-25 числа'},
+  {id:4,name:'Кредит',amount:70,type:'monthly',day:21,note:'До 21 числа'}
+];S.acc.forEach(a=>{if(a.hide===undefined)a.hide=false});ensureEnvelope();ensureTaxiCash();save();render()}catch(e){alert('Не удалось прочитать данные')}}
+const seg=()=>`<div class="sg" style="margin-top:12px"><button class="${tab=='ops'?'on':''}" onclick="tab='ops';render()">Список</button><button class="${tab=='stats'?'on':''}" onclick="tab='stats';render()">Анализ</button></div>`;
+let AC;
+const beep=k=>{try{AC=AC||new(window.AudioContext||window.webkitAudioContext)();AC.resume();const t=AC.currentTime,f=k=='i'?[660,990]:k=='e'?[520,390]:[600,600],o=AC.createOscillator(),g=AC.createGain();o.connect(g);g.connect(AC.destination);o.frequency.setValueAtTime(f[0],t);o.frequency.setValueAtTime(f[1],t+.09);g.gain.setValueAtTime(.0001,t);g.gain.exponentialRampToValueAtTime(.35,t+.02);g.gain.exponentialRampToValueAtTime(.0001,t+.3);o.start(t);o.stop(t+.32)}catch(e){}};
+const hap=()=>{try{if(navigator.vibrate)navigator.vibrate([30,50,30]);else{const l=$('#hp');l.click();setTimeout(()=>l.click(),90)}}catch(e){}};
+const fb=k=>{if(S.set.snd!==0)beep(k);if(S.set.vib!==0)hap()};
+const tg=k=>{S.set[k]=S.set[k]===0?1:0;save();render();fb('t')};
+const cash=()=>S.acc.find(a=>a.type=='💵')||S.acc[0];
+const yac=()=>{let a=S.acc.find(x=>x.id==S.yid);if(!a){a={id:uid(),name:'Яндекс',type:'🚕',bal:0,hide:true};S.acc.push(a);S.yid=a.id}else{a.hide=true}return a};
+const addInc=(k,m)=>{const y=yac();if(k=='карта')addT('i',y.id,m,'Такси: карта');else addT('i',cash().id,m,k=='наличные'?'Такси: наличные':'Такси: чаевые')};
+const pf=()=>{const d=new Date();return d.getFullYear()+'-'+p2(d.getMonth()+1)+'-01'};
+function weekChart(){return ''}
+const addSh=(d,a,b,orders=0,cash=0,card=0)=>S.sh.push({id:uid(),d:d||today(),s:a,e:b,h:hrs(a,b),orders:+orders||0,cash:+cash||0,card:+card||0,ts:Date.now()});
 function shS(date,editId){
   const existing=editId?S.sh.find(x=>x.id==editId):null;
   const d=existing?existing.d:(date||today());
@@ -331,7 +328,6 @@ function saveShift(id){
     if(x){x.d=d;x.s=s1;x.e=s2;x.h=hrs(s1,s2);x.orders=orders;x.cash=cash;x.card=card}
   }else{
     addSh(d,s1,s2,orders,cash,card);
-    // Also add income if cash/card > 0
     if(cash>0) addInc('наличные',cash);
     if(card>0) addInc('карта',card);
     if(orders>0) S.or.push({id:uid(),d:d,n:orders});
@@ -339,18 +335,64 @@ function saveShift(id){
   save();closeS();render();
 }
 function shDay(ds){const shifts=S.sh.filter(x=>x.d===ds);if(!shifts.length){shS(ds);return}sheet(`<h2 style="margin-top:0">${dl(ds)}</h2>`+shifts.map(x=>`<div class="r" onclick="shS(null,${x.id})"><div class="ic">⏱</div><div class="rt"><b>${x.s}–${x.e}</b><small>${x.h} ч · ${x.orders||0} зак.</small></div><span class="am">${(x.cash||0)+(x.card||0)>0?money((x.cash||0)+(x.card||0)):''}</span></div>`).join('')+`<button class="btn" onclick="shS('${ds}')">+ ещё смена</button>`)}
-function orS(){sheet(`<h2 style="margin-top:0">Заказы за день</h2><input class="big" id="oc" inputmode="numeric" placeholder="0"><button class="btn" onclick="const n=+$('#oc').value;if(!(n>0))return;S.or.push({id:uid(),d:today(),n});save();closeS();render()">Добавить</button>`)}
 function tiS(){sheet(`<h2 style="margin-top:0">Доход с такси</h2>${chips([['карта','💳 Карта (Яндекс)'],['наличные','💵 Наличные'],['чаевые','🙏 Чаевые']],TK,'TK')}<input class="big" id="ta" inputmode="decimal" placeholder="0"><button class="btn" onclick="const m=num($('#ta').value);if(!(m>0))return;addInc(TK,m);save();fb('i');closeS();render()">Сохранить</button>`)}
-
 function rentS(){sheet(`<h2 style="margin-top:0">Аренда авто</h2><input class="big" id="rm" inputmode="decimal" placeholder="0"><label>Со счёта</label><select class="f" id="rw">${opts(cash().id)}</select><button class="btn" onclick="const m=num($('#rm').value);if(!(m>0))return;addT('e',+$('#rw').value,m,'Аренда авто');save();fb('e');closeS();render()">Сохранить</button>`)}
 function teS(){sheet(`<h2 style="margin-top:0">Расход на авто</h2>${chips(Object.keys(TE).map(k=>[k,TE[k]+' '+k]),TC,'TC')}<input class="big" id="tm" inputmode="decimal" placeholder="0"><label>Со счёта</label><select class="f" id="tw">${opts(cash().id)}</select><button class="btn" onclick="const m=num($('#tm').value);if(!(m>0))return;addT('e',+$('#tw').value,m,TC);save();fb('e');closeS();render()">Сохранить</button>`)}
-function wdS(){const y=yac();sheet(`<h2 style="margin-top:0">Вывод с Яндекса</h2><small>Доступно: ${money(bal(y))}</small><input class="big" id="wm" inputmode="decimal" placeholder="0"><label>На счёт</label><select class="f" id="wt">${opts(cash().id==y.id?0:S.acc.find(a=>a.type=='💳')?.id,y.id)}</select><button class="btn" onclick="const m=num($('#wm').value);if(!(m>0&&m<=${bal(y)}))return alert('Некорректная сумма');addT('t',${y.id},m,'',+$('#wt').value);save();fb('t');closeS();render()">Вывести</button>`)}
-function qk(){const R=[];let kd='';for(const l of $('#qt').value.split('\n').map(x=>x.trim()).filter(Boolean)){const w=l.toLowerCase(),tm=l.match(/\d{1,2}[:.]\d{2}/g),nm=l.match(/\d+(?:[.,]\d+)?/),fx=x=>x.replace('.',':').replace(/^(\d):/,'0$1:');
-if(tm&&tm.length>1&&/смена|отработал/.test(w)){addSh(today(),fx(tm[0]),fx(tm[1]));R.push('смена');continue}
-const o=w.match(/(\d+)\s*заказ/);if(o){S.or.push({id:uid(),d:today(),n:+o[1]});R.push('заказы');continue}
-let ok=0;for(const k of ['карта','наличные','чаевые'])if(w.includes(k)&&nm){addInc(k,num(nm[0]));kd='i';R.push(k);ok=1;break}
-if(ok)continue;for(const [k,c] of [['бензин','Бензин'],['газ','Газ'],['аренда','Аренда авто'],['другое','Авто: другое']])if(w.includes(k)&&nm){addT('e',cash().id,num(nm[0]),c);kd=kd||'e';R.push(k);break}}
-save();QM=R.length?'Сохранено: '+R.join(', '):'Ничего не распознано';if(kd)fb(kd);render()}
+const chips=(arr,cur,key)=>`<div class="ch">${arr.map(([k,l])=>`<button class="${cur==k?'on':''}" onclick="${key}='${k}';${key=='TK'?'tiS':'teS'}()">${l}</button>`).join('')}</div>`;
+const opts=(v,ex)=>S.acc.filter(a=>a.id!=ex&&(a.id!==S.yid || a.envelope)).map(a=>`<option value="${a.id}" ${a.id==v?'selected':''}>${a.type} ${esc(a.name)}</option>`).join('');
+function wdS(){const y=yac(),av=bal(y);if(!(av>0)){alert('На Яндексе пусто');return}sheet(`<h2 style="margin-top:0">Вывести с Яндекса</h2><p>Доступно: <b>${money(av)}</b></p><input class="big" id="wm" value="${av}"><label>На счёт</label><select class="f" id="wa">${opts(cash().id,y.id)}</select><button class="btn" onclick="doWd()">Вывести</button>`)}
+function doWd(){const m=num($('#wm').value),to=+$('#wa').value,y=yac();if(!(m>0)||m>bal(y))return;addT('t',y.id,m,'',to);save();closeS();render()}
+function tcMove(dir){
+  try{
+    const tc=S.acc.find(a=>a.taxiCash);
+    if(!tc){alert('Счёт «Наличка такси» не найден. Обнови страницу.');return}
+    const others=S.acc.filter(a=>!a.taxiCash && !a.envelope && a.id!==S.yid);
+    if(!others.length){alert('Нет других счетов');return}
+    let msg=(dir=='in'?'Откуда пополнить?':'Куда вывести?')+'\\n';
+    others.forEach((a,i)=> msg += (i+1)+'. '+a.type+' '+a.name+' ('+money(bal(a))+')\\n');
+    const choice=prompt(msg);
+    if(!choice)return;
+    const idx=parseInt(choice)-1;
+    if(isNaN(idx)||idx<0||!others[idx]){alert('Неверный номер');return}
+    const target=others[idx];
+    const max=dir=='out'?bal(tc):bal(target);
+    const m=parseFloat(String(prompt('Сумма (макс '+max+'):', max)||'').replace(',','.'));
+    if(!(m>0)||m>max){alert('Некорректная сумма');return}
+    if(dir=='in') addT('t', target.id, m, '', tc.id);
+    else addT('t', tc.id, m, '', target.id);
+    save();render();
+    alert('Готово');
+  }catch(e){alert('Ошибка: '+e.message)}
+}
+function sheet(h){$('#sh').innerHTML=h;$('#ov').classList.add('on')}
+function closeS(){$('#ov').classList.remove('on')}
+$('#ov').onclick=e=>{if(e.target==$('#ov'))closeS()};
+function render(){
+  const p=location.hash.slice(1)||'home';
+  $('#v').innerHTML=V[p]?V[p]():V.home();
+  $('#nv').innerHTML=[['home','🏠','Главная'],['ops','☰','Операции'],['','+','',true],['taxi','🚗','Такси'],['acc','💼','Счета']].map(([id,ic,lb,big])=>big?`<button onclick="newTx()" style="background:var(--ac);color:#fff;width:56px;height:56px;border-radius:50%;margin-top:-20px;font-size:28px">+</button>`:`<button class="${p==id?'on':''}" onclick="location.hash='${id}';render()">${ic}<span>${lb}</span></button>`).join('');
+  if(p=='taxi') V.taxi();
+}
+V.taxi=()=>{const s=pf(),X=S.tx.filter(t=>t.k&&t.d>=s),inc=X.filter(t=>t.t=='i'),ex=X.filter(t=>t.t=='e'),I=inc.reduce((a,t)=>a+t.m,0),E=ex.reduce((a,t)=>a+t.m,0),sh=S.sh.filter(x=>x.d>=s),H=sh.reduce((a,x)=>a+x.h,0),O=S.or.filter(x=>x.d>=s).reduce((a,x)=>a+x.n,0),D=new Set(sh.map(x=>x.d)).size;
+$('#v').innerHTML=`<div class="card" style="background:linear-gradient(135deg,#1a5c4a,#2d8a6e);color:#fff;padding:16px">
+<div style="display:flex;justify-content:space-between"><div><small>Доход</small><b>${money(I)}</b></div><div style="text-align:right"><small>Расходы</small><b>${money(E)}</b></div></div></div>
+<h2>Добавить</h2><div class="qa">${[['⏱','Смена','shS()'],['💰','Доход','tiS()'],['⛽','Расход','teS()'],['🚗','Аренда','rentS()']].map(([i,l,f])=>`<button onclick="${f}"><span>${i}</span>${l}</button>`).join('')}</div>
+<div class="card" style="margin-top:12px">
+<div class="r"><div class="rt"><b>Часов</b></div><span class="am">${H.toFixed(1)}</span></div>
+<div class="r"><div class="rt"><b>Дней</b></div><span class="am">${D}</span></div>
+<div class="r"><div class="rt"><b>Заказов</b></div><span class="am">${O}</span></div>
+<div class="r"><div class="rt"><b>Чистыми в час</b></div><span class="am">${H>0?money((I-E)/H):'—'}</span></div>
+<div class="r"><div class="ic">💵</div><div class="rt"><b>Наличные</b></div><span class="am">${money(bal(S.acc.find(a=>a.taxiCash)||{bal:0}))}</span></div>
+</div>
+<button class="btn" onclick="wdS()">Вывести с Яндекса на счёт</button>
+<button class="btn s" onclick="tcMove('in')">Пополнить наличку такси</button>
+<button class="btn s" onclick="tcMove('out')">Вывести наличку такси</button>
+<button class="btn s" onclick="S.rc=Date.now();save();render()">Сдал чеки (обнулить)</button>
+<h2>Календарь смен · ${new Date().toLocaleDateString('ru-RU',{month:'long',year:'numeric'})}</h2>
+<div class="card"><div class="cal">${(()=>{let h='';const n=new Date(),y=n.getFullYear(),m=n.getMonth(),f=new Date(y,m,1).getDay(),days=new Date(y,m+1,0).getDate();const off=(f+6)%7;for(let i=0;i<off;i++)h+='<div></div>';for(let d=1;d<=days;d++){const ds=y+'-'+p2(m+1)+'-'+p2(d),has=S.sh.some(x=>x.d===ds);h+=`<div class="${has?'on':''}" onclick="shDay('${ds}')">${d}</div>`}return h})()}</div></div>
+<h2>Последние смены</h2>${S.sh.length?`<div class="card">${S.sh.slice(-8).reverse().map(x=>`<div class="r" onclick="shS(null,${x.id})"><div class="ic">⏱</div><div class="rt"><b>${x.s}–${x.e}</b><small>${dl(x.d)} · ${x.orders||0} зак.</small></div><span class="am">${x.h} ч</span></div>`).join('')}</div>`:'<div class="em">Смен пока нет</div>'}`;
+};
+window.onhashchange=render;
 render();
 </script>
 </body>
